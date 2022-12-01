@@ -591,7 +591,7 @@ if (onnxruntime_ENABLE_EAGER_MODE)
         "Option onnxruntime_ENABLE_EAGER_MODE can only be used when onnxruntime_ENABLE_TRAINING and onnxruntime_ENABLE_PYTHON are enabled")
   endif()
   add_compile_definitions(ENABLE_EAGER_MODE)
-  list(APPEND ONNXRUNTIME_CMAKE_FILES onnxruntime_eager)
+  set(ONNXRUNTIME_EAGER_CMAKE_FILE_NAME onnxruntime_eager)
 endif()
 
 if (onnxruntime_ENABLE_LAZY_TENSOR)
@@ -606,7 +606,6 @@ if (onnxruntime_ENABLE_LAZY_TENSOR)
   # TODO: In the future, we can compile LazyTensor into a standalone
   # library target, onnxruntime_lazy_tensor, to make the buid
   # cleaner.
-  #list(APPEND ONNXRUNTIME_CMAKE_FILES onnxruntime_lazy_tensor)
 endif()
 
 
@@ -1387,7 +1386,7 @@ endif()
 
 #Now the 'onnxruntime_EXTERNAL_LIBRARIES' variable should be sealed. It will be used in onnxruntime.cmake which will be included in the next.
 #The order of the following targets matters. Right depends on left. If target A appears before target B. Then A.cmake can not use variables defined in B.cmake.
-set(ONNXRUNTIME_CMAKE_FILES onnxruntime_flatbuffers onnxruntime_common onnxruntime_mlas onnxruntime_graph onnxruntime_framework onnxruntime_util onnxruntime_providers onnxruntime_optimizer onnxruntime_session)
+set(ONNXRUNTIME_CMAKE_FILES onnxruntime_flatbuffers onnxruntime_common onnxruntime_mlas onnxruntime_graph onnxruntime_framework onnxruntime_util onnxruntime_providers onnxruntime_optimizer onnxruntime_session ${ONNXRUNTIME_EAGER_CMAKE_FILE_NAME})
 
 if (onnxruntime_USE_WINML)
   # WINML uses and depends on the shared lib.  Note:  You can build WINML without DML and you will get a
