@@ -174,7 +174,7 @@ implements java.lang.AutoCloseable</pre>
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="OrtSession.RunOptions.html" title="class in ai.onnxruntime">OrtSession.RunOptions</a></span></code></th>
 <td class="colLast">
-<div class="block">Used to control logging and termination of a call to <a href="#run(java.util.Map)"><code>run(java.util.Map&lt;java.lang.String, ai.onnxruntime.OnnxTensor&gt;)</code></a>.</div>
+<div class="block">Used to control logging and termination of a call to <a href="#run(java.util.Map)"><code>run(java.util.Map&lt;java.lang.String, ? extends ai.onnxruntime.OnnxTensorLike&gt;)</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -274,14 +274,14 @@ implements java.lang.AutoCloseable</pre>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs)</code></th>
 <td class="colLast">
 <div class="block">Scores an input feed dict, returning the map of all inferred outputs.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map,ai.onnxruntime.OrtSession.RunOptions)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map,ai.onnxruntime.OrtSession.RunOptions)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs,
    <a href="OrtSession.RunOptions.html" title="class in ai.onnxruntime">OrtSession.RunOptions</a>&nbsp;runOptions)</code></th>
 <td class="colLast">
 <div class="block">Scores an input feed dict, returning the map of all inferred outputs.</div>
@@ -289,7 +289,7 @@ implements java.lang.AutoCloseable</pre>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map,java.util.Set)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map,java.util.Set)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs,
    java.util.Set&lt;java.lang.String&gt;&nbsp;requestedOutputs)</code></th>
 <td class="colLast">
 <div class="block">Scores an input feed dict, returning the map of requested inferred outputs.</div>
@@ -297,7 +297,7 @@ implements java.lang.AutoCloseable</pre>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map,java.util.Set,ai.onnxruntime.OrtSession.RunOptions)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run(java.util.Map,java.util.Set,ai.onnxruntime.OrtSession.RunOptions)">run</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs,
    java.util.Set&lt;java.lang.String&gt;&nbsp;requestedOutputs,
    <a href="OrtSession.RunOptions.html" title="class in ai.onnxruntime">OrtSession.RunOptions</a>&nbsp;runOptions)</code></th>
 <td class="colLast">
@@ -431,7 +431,7 @@ implements java.lang.AutoCloseable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>run</h4>
-<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs)
+<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs)
                       throws <a href="OrtException.html" title="class in ai.onnxruntime">OrtException</a></pre>
 <div class="block">Scores an input feed dict, returning the map of all inferred outputs.
 
@@ -453,7 +453,7 @@ implements java.lang.AutoCloseable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>run</h4>
-<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs,
+<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs,
                              <a href="OrtSession.RunOptions.html" title="class in ai.onnxruntime">OrtSession.RunOptions</a>&nbsp;runOptions)
                       throws <a href="OrtException.html" title="class in ai.onnxruntime">OrtException</a></pre>
 <div class="block">Scores an input feed dict, returning the map of all inferred outputs.
@@ -477,7 +477,7 @@ implements java.lang.AutoCloseable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>run</h4>
-<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs,
+<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs,
                              java.util.Set&lt;java.lang.String&gt;&nbsp;requestedOutputs)
                       throws <a href="OrtException.html" title="class in ai.onnxruntime">OrtException</a></pre>
 <div class="block">Scores an input feed dict, returning the map of requested inferred outputs.
@@ -501,13 +501,13 @@ implements java.lang.AutoCloseable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>run</h4>
-<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="OnnxTensor.html" title="class in ai.onnxruntime">OnnxTensor</a>&gt;&nbsp;inputs,
+<pre class="methodSignature">public&nbsp;<a href="OrtSession.Result.html" title="class in ai.onnxruntime">OrtSession.Result</a>&nbsp;run&#8203;(java.util.Map&lt;java.lang.String,&#8203;? extends <a href="OnnxTensorLike.html" title="class in ai.onnxruntime">OnnxTensorLike</a>&gt;&nbsp;inputs,
                              java.util.Set&lt;java.lang.String&gt;&nbsp;requestedOutputs,
                              <a href="OrtSession.RunOptions.html" title="class in ai.onnxruntime">OrtSession.RunOptions</a>&nbsp;runOptions)
                       throws <a href="OrtException.html" title="class in ai.onnxruntime">OrtException</a></pre>
 <div class="block">Scores an input feed dict, returning the map of requested inferred outputs.
 
- <p>The outputs are sorted based on the supplied set traveral order.</div>
+ <p>The outputs are sorted based on the supplied set traversal order.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>inputs</code> - The inputs to score.</dd>
