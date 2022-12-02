@@ -79,7 +79,7 @@ all_transabs = list(product([True, False], repeat=2))
 @pytest.mark.parametrize("size", get_gemm_basic_sizes(full=True) + get_gemm_bert_sizes(full=False))
 @pytest.mark.parametrize("transab", all_transabs)
 def test_rocblas_gemm_all_cases(dtype, size, transab):
-    _test_gemm(getattr(ke, "RocblasGemm_" + dtype_to_suffix(dtype)), dtype, *size, *transab)
+    _test_gemm(getattr(ke, "RocBlasGemm_" + dtype_to_suffix(dtype)), dtype, *size, *transab)
 
 
 @pytest.mark.parametrize("dtype", dtypes)
@@ -135,7 +135,7 @@ def profile_gemm_func(f, transa: bool, transb: bool, dtype: str, m: int, n: int,
 
 def profile_with_args(transa, transb, dtype, m, n, k):
     dtype_suffix = "_" + dtype_to_suffix(dtype)
-    profile_gemm_func(getattr(ke, "RocblasGemm" + dtype_suffix), transa, transb, dtype, m, n, k)
+    profile_gemm_func(getattr(ke, "RocBlasGemm" + dtype_suffix), transa, transb, dtype, m, n, k)
     transab_suffix = "_" + transab_to_suffix((transa, transb))
     profile_gemm_func(getattr(ke, "CKGemm" + dtype_suffix + transab_suffix), transa, transb, dtype, m, n, k)
     profile_gemm_func(getattr(ke, "GemmTunable" + dtype_suffix + transab_suffix), transa, transb, dtype, m, n, k)
