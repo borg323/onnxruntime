@@ -6,13 +6,13 @@
     [string]$build_config = "RelWithDebInfo",
     [string]$install_prefix
  )
- 
+
  function Install-Pybind {
 
     param (
         [Parameter(Mandatory)][string]$cmake_path,
         [Parameter(Mandatory)][string]$build_config,
-        [Parameter(Mandatory)][string[]]$cmake_extra_args   
+        [Parameter(Mandatory)][string[]]$cmake_extra_args
     )
 
     pushd .
@@ -38,7 +38,7 @@ function Install-Protobuf {
         [Parameter(Mandatory)][string]$cmake_path,
         [Parameter(Mandatory)][string]$build_config,
         [Parameter(Mandatory)][string]$protobuf_version,
-        [Parameter(Mandatory)][string[]]$cmake_extra_args   
+        [Parameter(Mandatory)][string[]]$cmake_extra_args
     )
 
     pushd .
@@ -52,7 +52,7 @@ function Install-Protobuf {
 
     [string[]]$cmake_args = "cmake", "-DCMAKE_BUILD_TYPE=$build_config", "-Dprotobuf_BUILD_TESTS=OFF", "-DBUILD_SHARED_LIBS=OFF", "-DCMAKE_PREFIX_PATH=$install_prefix",  "-DCMAKE_INSTALL_PREFIX=$install_prefix", "-Dprotobuf_MSVC_STATIC_RUNTIME=OFF"
     $cmake_args += $cmake_extra_args
-    
+
     Start-Process -FilePath $cmake_path -ArgumentList $cmake_args -NoNewWindow -Wait
     $cmake_args = "--build", ".",  "--parallel", "--config", $build_config, "--target", "INSTALL"
     Start-Process -FilePath $cmake_path -ArgumentList $cmake_args -NoNewWindow -Wait
