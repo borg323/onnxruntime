@@ -118,6 +118,11 @@ Status ActivationOpBuilder::AddToModelBuilderImpl(ModelBuilder& model_builder,
     } else if (op_type == "PRelu") {
       coreml_op_type = "prelu";
       add_alpha = true;
+    } else if (op_type == "Softplus") {
+      coreml_op_type = "softplus";
+    } else if (op_type == "Elu") {
+      coreml_op_type = "elu";
+      add_alpha = true;
     } else {
       return ORT_MAKE_STATUS(ONNXRUNTIME, INVALID_ARGUMENT,
                              "ActivationOpBuilder::AddToModelBuilderImpl, unknown op: ", op_type);
@@ -141,7 +146,7 @@ Status ActivationOpBuilder::AddToModelBuilderImpl(ModelBuilder& model_builder,
         }
       } else {
         NodeAttrHelper helper(node);
-        const auto alpha = helper.Get("alpha", 0.01f);
+        const auto alpha = helper.Get("alpha", "Elu" == op_type ? 1.0f : 0.01f);
 
         if (input_dtype == ONNX_NAMESPACE::TensorProto_DataType_FLOAT) {
           AddOperationInput(*op, "alpha", model_builder.AddScalarConstant(op->type(), "alpha", alpha));
@@ -259,8 +264,10 @@ bool ActivationOpBuilder::IsOpSupportedImpl(const Node& node, const OpBuilderInp
                                             const logging::Logger& logger) const {
   const auto& op_type = node.OpType();
 
-  if (op_type == "Gelu" && !input_params.create_mlprogram) {
-    return false;
+  if (!input_params.create_mlprogram) {
+    if (op_type == "Gelu" || op_type == "Softplus" || op_type == "Elu") {
+      return false;
+    }
   }
   if (op_type == "PRelu") {
     return IsPReluOpSupported(node, input_params, logger);
@@ -286,6 +293,8 @@ void CreateActivationOpBuilder(const std::string& op_type, OpBuilderRegistration
           "PRelu",
           "LeakyRelu",
           "Gelu",
+          "Softplus",
+          "Elu",
       };
 
   op_registrations.builders.push_back(std::make_unique<ActivationOpBuilder>());
