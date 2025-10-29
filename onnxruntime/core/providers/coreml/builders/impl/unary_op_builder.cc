@@ -84,7 +84,7 @@ Status UnaryOpBuilder::AddToModelBuilderImpl(ModelBuilder& model_builder, const 
 bool UnaryOpBuilder::IsOpSupportedImpl(const Node& node, const OpBuilderInputParams& input_params,
                                        const logging::Logger& /*logger*/) const {
   if (!input_params.create_mlprogram) {
-    if (node.OpType() == "Erf" || node.OpType() == "Round" || node.OpType() == "Exp" || node.OpType() == "Log")) {
+    if (node.OpType() == "Erf" || node.OpType() == "Round" || node.OpType() == "Exp" || node.OpType() == "Log") {
       return false;
     }
   }
