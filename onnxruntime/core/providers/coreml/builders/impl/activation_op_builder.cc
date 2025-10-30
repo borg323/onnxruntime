@@ -276,8 +276,13 @@ bool ActivationOpBuilder::IsOpSupportedImpl(const Node& node, const OpBuilderInp
   return true;
 }
 
-int ActivationOpBuilder::GetMinSupportedOpSet(const Node& /* node */) const {
-  // All ops opset 5- uses consumed_inputs attribute which is not supported for now
+int ActivationOpBuilder::GetMinSupportedOpSet(const Node& node) const {
+  const auto& op_type(node.OpType());
+  // Softplus was unmodified from opset 1 to 21 (with no attributes).
+  if (op_type == "Softplus") {
+    return 1;
+  }
+  // All other ops opset 5- uses consumed_inputs attribute which is not supported for now.
   return 6;
 }
 
